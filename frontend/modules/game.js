@@ -14,20 +14,6 @@ export class Game {
     "matchatea",
     "strawberrymilk",
     "popsie",
-    "strawberry",
-    "apple",
-    "cherry",
-    "coffee",
-    "avocado",
-    "watermelon",
-    "kiwi",
-    "applejuice",
-    "bubbletea",
-    "donut",
-    "chocolatemilk",
-    "matchatea",
-    "strawberrymilk",
-    "popsie",
   ];
 
   INITIAL_TIMER = 5000;
@@ -41,12 +27,27 @@ export class Game {
   }
 
   duplicateCards = () => {
-    //sets an instance variable called gameCards that has the cards x2
+    const gameCards = [...this.CARDS, ...this.CARDS];
+    return gameCards;
   };
 
-  scrambleCards = () => {
-    //takes gameCards and randomizes the order of the array
-    //note: gameCards is going to be the cards to use througout the game.
+  shuffleCards = (cards) => {
+    let ctr = cards.length,
+      temp,
+      index;
+
+    // While there are elements in the array
+    while (ctr > 0) {
+      // Pick a random index
+      index = Math.floor(Math.random() * ctr);
+      // Decrease ctr by 1
+      ctr--;
+      // And swap the last element with it
+      temp = cards[ctr];
+      cards[ctr] = cards[index];
+      cards[index] = temp;
+    }
+    return cards;
   };
 
   flipCards = (timer) => {
@@ -84,7 +85,7 @@ export class Game {
   };
 
   displayCards = () => {
-    for (const element of this.CARDS) {
+    for (const element of this.shuffleCards(this.duplicateCards())) {
       let flipContainer = document.createElement("div");
       flipContainer.classList.add("flip-container");
       flipContainer.classList.add("card");
@@ -122,12 +123,6 @@ export class Game {
           // Second click
 
           this.disableClick();
-
-          // console.log(
-          //   currentClickedCard.dataset.id,
-          //   this.clickedCardMemo.dataset.id,
-          //   currentClickedCard
-          // );
           const matched = this.matchTracker(
             currentClickedCard.dataset.id,
             this.clickedCardMemo.dataset.id
