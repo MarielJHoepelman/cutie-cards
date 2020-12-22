@@ -68,16 +68,20 @@ export class Game {
     return this.getWrapperElement().querySelector(".cards");
   };
 
+  getCardsButtons = () => {
+    return Object.values(this.getCardsElement().querySelectorAll("button"));
+  };
+
   disableClick = () => {
-    // loop all buttons from dom inside of the `getCardsElement`
-    //set attribute disabled to each element
-    //
+    this.getCardsButtons().forEach((item, i) => {
+      item.setAttribute("disabled", true);
+    });
   };
 
   enableClick = () => {
-    // loop all buttons from dom inside of the `getCardsElement`
-    //set attribute disabled to each element
-    //
+    this.getCardsButtons().forEach((item, i) => {
+      item.removeAttribute("disabled");
+    });
   };
 
   matchTracker = (cardOne, cardTwo) => {
@@ -132,10 +136,10 @@ export class Game {
             /// score!
             console.log("win");
             this.clickedCardMemo = null; // reset the memo card
+            this.enableClick();
           } else {
             console.log("not win");
             setTimeout((timer) => {
-              this.enableClick();
               this.clickedCardMemo
                 .closest(".flip-container")
                 .classList.add("flipped"); // fliped the first card
@@ -143,6 +147,7 @@ export class Game {
               parentDiv.classList.add("flipped"); // flip the second card
 
               this.clickedCardMemo = null; // reset the memo card
+              this.enableClick();
             }, this.FLIP_TIMER);
           }
         }
