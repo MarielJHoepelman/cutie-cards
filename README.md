@@ -1,24 +1,60 @@
-# README
+# Cutie Cards
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
 
-Things you may want to cover:
+[Cutie Cards](https://github.com/MarielJHoepelman/cutie-cards) is a memory card game for children.  
+[Cutie Cards](https://github.com/MarielJHoepelman/cutie-cards) is a minimum viable product application developed to fulfill the Javascript project requirement for the [Flatiron School](https://flatironschool.com/) Full Stack Web Development V8 curriculum.
 
-* Ruby version
+## Usage
 
-* System dependencies
+1. Clone this repository to create a local copy in your computer.
 
-* Configuration
+```
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+```
 
-* Database creation
+2.  Change directory to the project folder.
 
-* Database initialization
+```
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+```
 
-* How to run the test suite
+3. Run bundle install to install all dependencies.
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+```
 
-* Deployment instructions
+4. Run the database migrations.
 
-* ...
+```
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+```
+
+5. Run the seeds file.
+
+```
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+```
+
+6. Start the local server and go to https address (e.g http://localhost:3000/)
+
+```
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+```
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/MarielJHoepelman/cutie-cards This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
+## License
+
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+## Code of Conduct
+
+Everyone interacting in the [Cutie Cards](https://github.com/MarielJHoepelman/cutie-cards) project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [Code of Conduct](https://github.com/MarielJHoepelman/cutie-cards/blob/master/CODE_OF_CONDUCT.md).
+
+## Credits
+
+The graphics for this project were created by [Mariangel Fermin](https://www.instagram.com/noiir_rrr/).
