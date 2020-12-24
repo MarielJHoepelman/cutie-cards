@@ -134,11 +134,9 @@ export class Game {
 
           if (matched) {
             /// score!
-            console.log("win");
             this.clickedCardMemo = null; // reset the memo card
             this.enableClick();
           } else {
-            console.log("not win");
             setTimeout((timer) => {
               this.clickedCardMemo
                 .closest(".flip-container")
