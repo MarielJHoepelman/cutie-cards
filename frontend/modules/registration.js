@@ -3,12 +3,18 @@ export class Registration {
     this.registrationForm = document.getElementById("registration-form");
     this.registrationForm.addEventListener("submit", (event) => {
       event.preventDefault();
-      this.username = event.target.elements.username.value;
-      const a = this.submitData();
-      console.log(a);
+      this.name = event.target.elements["user[name]"].value;
+      this.submitData();
     });
   }
 
+  displayErrors = (error) => {
+    const errorDiv = document.getElementById("errors");
+    errorDiv.innerHTML = error;
+    setTimeout(() => {
+      errorDiv.innerHTML = "";
+    }, 2000);
+  };
   submitData() {
     let payload = {
       method: "POST",
@@ -16,19 +22,24 @@ export class Registration {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify({ username: this.username }),
+      body: JSON.stringify({ name: this.name }),
     };
 
     return fetch("http://localhost:3000/users", payload)
-      .then(function (response) {
-        return response.json();
+      .then((response) => {
+        if (!response.ok) {
+          return response.json().then((json) => {
+            throw new Error(json.name[0]);
+          });
+        } else {
+          return response.json();
+        }
       })
-      .then(function (response) {
-        console.log(response);
-        return response;
+      .then((json) => {
+        return json;
       })
-      .catch(function (error) {
-        //what to do if error
+      .catch((error) => {
+        this.displayErrors(error);
       });
   }
 }
