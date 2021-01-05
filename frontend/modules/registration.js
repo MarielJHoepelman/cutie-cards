@@ -1,12 +1,25 @@
+import { Fetcher } from "./fetcher.js";
+
 export class Registration {
   constructor() {
     this.registrationForm = document.getElementById("registration-form");
+    this.userNameContainer = document.getElementById("username");
+    this.addListener();
+  }
+
+  addListener = () => {
     this.registrationForm.addEventListener("submit", (event) => {
       event.preventDefault();
       this.name = event.target.elements["user[name]"].value;
-      this.submitData();
+
+      Fetcher.submitData("POST", { name: this.name }, "users").then((json) => {
+        console.log(json);
+        this.userNameContainer.innerHTML = `Hi ${json.name}!`;
+        this.userNameContainer.setAttribute("data-id", json.id);
+        this.registrationForm.classList.add("hidden");
+      });
     });
-  }
+  };
 
   displayErrors = (error) => {
     const errorDiv = document.getElementById("errors");
@@ -15,31 +28,4 @@ export class Registration {
       errorDiv.innerHTML = "";
     }, 2000);
   };
-  submitData() {
-    let payload = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({ name: this.name }),
-    };
-
-    return fetch("http://localhost:3000/users", payload)
-      .then((response) => {
-        if (!response.ok) {
-          return response.json().then((json) => {
-            throw new Error(json.name[0]);
-          });
-        } else {
-          return response.json();
-        }
-      })
-      .then((json) => {
-        return json;
-      })
-      .catch((error) => {
-        this.displayErrors(error);
-      });
-  }
 }
