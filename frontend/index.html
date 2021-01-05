@@ -3,7 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <title>Cutie Cards</title>
+
     <link rel="stylesheet" href="./styles.css" type="text/css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Margarine&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header>
@@ -15,18 +21,26 @@
     <main id="main">
       <div id="errors"></div>
       <div id="registration">
-        <form id="registration-form">
+        <form id="registration-form" class="registration-form">
           <label for="user[name]">Enter Your Name Here</label>
           <input type="text" id="user[name]" name="user[name]" />
           <input type="submit" value="Submit" />
         </form>
+        <div id="username" class="username"></div>
       </div>
 
       <div id="game">
         <div class="cards"></div>
       </div>
+
+      <div id="popUpBanner" class="popUpBanner"></div>
     </main>
 
     <script type="module" src="./index.js"></script>
+
+    <div class="footer-copyright">
+      © 2020 Copyright: created by Mariel Hoepelman
+      <a href="https://marielhoepelman.com"> www.marielhoepelman.com</a>
+    </div>
   </body>
 </html>
