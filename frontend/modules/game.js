@@ -3,10 +3,10 @@ import { Fetcher } from "./fetcher.js";
 export class Game {
   CARDS = [
     //"strawberry",
-    "apple",
+    //"apple",
     //"cherry",
     "coffee",
-    "avocado",
+    // "avocado",
     //"watermelon",
     //"kiwi",
     //"applejuice",
@@ -21,9 +21,11 @@ export class Game {
   INITIAL_TIMER = 5000;
   FLIP_TIMER = 500;
   MOVES_LIMIT = 10;
-  MATCHES_TO_WIN = 4;
+  MATCHES_TO_WIN = 2;
 
+  // score = 0;
   matchesCounter = 0; //adds one every time a match is made.
+  moves = 0;
   movesLeft = 0;
 
   clickedCardMemo = null;
@@ -97,14 +99,25 @@ export class Game {
   };
 
   winChecker = () => {
+    let userId = document.getElementById("username").getAttribute("data-id");
     if (this.movesLeft === 0) {
       //show loose banner
       //play again yes no
       console.log("booooo");
     } else if (this.matchesCounter === this.MATCHES_TO_WIN) {
-      //show win banner
-      //play again yes no
-      console.log("yayyyyyy");
+      // let userId = document.getElementById("username").getAttribute("data-id");
+      Fetcher.submitData(
+        "POST",
+        {
+          data: { user_id: userId, score: this.moves.toString() },
+        },
+        "scores"
+      ).then((json) => {
+        //clicks it took to win the  game
+        //show win banner
+        //play again yes no
+        console.log(json);
+      });
     }
   };
 
@@ -143,10 +156,9 @@ export class Game {
   timeSetter = (parentElement) => {
     let timeSetter = setTimeout((timer) => {
       this.clickedCardMemo.closest(".flip-container").classList.add("flipped"); // fliped the first card
-
       parentElement.classList.add("flipped"); // flip the second card
-
       this.clickedCardMemo = null; // reset the memo card
+      // this.score = 0;//resetScore
       this.enableClick();
     }, this.FLIP_TIMER);
     return timeSetter;
@@ -164,6 +176,7 @@ export class Game {
         this.clickedCardMemo = currentClickedCard; // this is the first card clicked, save it
       } else {
         // Second click
+        this.moves += 1;
         this.movesLeft -= 1;
         this.disableClick();
         const matched = this.matchTracker(
@@ -182,8 +195,9 @@ export class Game {
 
         this.winChecker();
 
+        console.log("moves", this.moves);
         console.log("matches", this.matchesCounter);
-        console.log(this.movesLeft);
+        // console.log(this.movesLeft);
       }
     });
   };
