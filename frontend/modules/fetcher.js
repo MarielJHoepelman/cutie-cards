@@ -9,6 +9,14 @@ export class Fetcher {
       body: JSON.stringify(body),
     };
 
+    const displayErrors = (error) => {
+      const errorDiv = document.getElementById("errors");
+      errorDiv.innerHTML = error;
+      setTimeout(() => {
+        errorDiv.innerHTML = "";
+      }, 2000);
+    };
+
     return fetch(`http://localhost:3000/${endPoint}`, payload)
       .then((response) => {
         if (!response.ok) {
@@ -23,7 +31,7 @@ export class Fetcher {
         return json;
       })
       .catch((error) => {
-        this.displayErrors(error);
+        displayErrors(error);
       });
   }
 }
