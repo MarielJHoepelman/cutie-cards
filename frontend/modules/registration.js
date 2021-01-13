@@ -1,4 +1,5 @@
 import { Fetcher } from "./fetcher.js";
+import { Game } from "./game.js";
 
 export class Registration {
   constructor() {
@@ -13,18 +14,24 @@ export class Registration {
       : "You don't have any scores saved.";
   };
 
+  // displayMovesLeft = () => {
+  //   document
+  //     .getElementById("moves")
+  //     .innerHTML(`Moves left ${this.MOVES_LIMIT}`);
+  // };
   addListener = () => {
     this.registrationForm.addEventListener("submit", (event) => {
       event.preventDefault();
       this.name = event.target.elements["user[name]"].value;
 
       Fetcher.submitData("POST", { name: this.name }, "users").then((json) => {
-        console.log(json);
         this.userNameContainer.innerHTML = `Hi ${
           json.name
         }! ${this.scoreMessage(json.best_score)}`;
+        const game = new Game();
         this.userNameContainer.setAttribute("data-id", json.id);
         this.registrationForm.classList.add("hidden");
+        // this.displayMovesLeft();
       });
     });
   };
