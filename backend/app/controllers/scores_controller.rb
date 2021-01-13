@@ -3,7 +3,11 @@ skip_before_action :verify_authenticity_token
 
   def create
     data = Score.create(score_params)
-    render json: {user_id: data.user_id, score: data.score}
+    if data.valid?
+      render json: {user_id: data.user_id, score: data.score}
+    else
+      render json: data.errors.messages.to_json, status: 500
+    end
   end
 
   def score_params
