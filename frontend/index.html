@@ -19,21 +19,27 @@
     </header>
 
     <main id="main">
-      <div id="errors"></div>
-      <div id="registration">
-        <form id="registration-form" class="registration-form">
-          <label for="user[name]">Enter Your Name Here</label>
-          <input type="text" id="user[name]" name="user[name]" />
-          <input type="submit" value="Submit" />
-        </form>
-        <div id="username" class="username"></div>
+      <div class="login_wrapper">
+        <div id="errors"></div>
+        <div id="registration">
+          <form id="registration-form" class="registration-form">
+            <label for="user[name]">Enter Your Name Here</label>
+            <input type="text" id="user[name]" name="user[name]" />
+            <input type="submit" value="Submit" />
+          </form>
+          <div id="username" class="username"></div>
+          <div id="score" class="score"></div>
+          <div id="moves" class="moves"></div>
+        </div>
       </div>
 
       <div id="game">
         <div class="cards"></div>
       </div>
 
-      <div id="popUpBanner" class="popUpBanner"></div>
+      <div id="modal" class="modal">
+        <div id="banner" class="banner"></div>
+      </div>
     </main>
 
     <script type="module" src="./index.js"></script>
