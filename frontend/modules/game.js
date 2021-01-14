@@ -2,29 +2,28 @@ import { Fetcher } from "./fetcher.js";
 
 export class Game {
   CARDS = [
-    //"strawberry",
-    //"apple",
-    //"cherry",
+    // "strawberry",
+    // "apple",
+    // "cherry",
     "coffee",
     // "avocado",
-    //"watermelon",
-    //"kiwi",
-    //"applejuice",
-    //"bubbletea",
-    //"donut",
-    //"chocolatemilk",
-    //"matchatea",
-    //"strawberrymilk",
+    // "watermelon",
+    // "kiwi",
+    // "applejuice",
+    // "bubbletea",
+    // "donut",
+    // "chocolatemilk",
+    // "matchatea",
+    // "strawberrymilk",
     "popsie",
   ];
 
   INITIAL_TIMER = 5000;
   FLIP_TIMER = 500;
-  MOVES_LIMIT = 10;
+  MOVES_LIMIT = 5;
   MATCHES_TO_WIN = 2;
 
-  // score = 0;
-  matchesCounter = 0; //adds one every time a match is made.
+  matchesCounter = 0;
   moves = 0;
   movesLeft = 0;
 
@@ -34,6 +33,7 @@ export class Game {
     this.movesLeft = this.MOVES_LIMIT;
     this.displayCards();
     this.flipCards(this.INITIAL_TIMER);
+    this.movesMessage();
   }
 
   duplicateCards = () => {
@@ -99,13 +99,13 @@ export class Game {
   };
 
   winChecker = () => {
+    let wonGame;
     let userId = document.getElementById("username").getAttribute("data-id");
     if (this.movesLeft === 0) {
-      //show loose banner
-      //play again yes no
-      console.log("booooo");
-    } else if (this.matchesCounter === this.MATCHES_TO_WIN) {
-      // let userId = document.getElementById("username").getAttribute("data-id");
+      wonGame = false;
+      this.displayModal(wonGame);
+      console.log(wonGame);
+    } else if (this.matchesCounter === this.MATCHES_TO_WIN && !!userId) {
       Fetcher.submitData(
         "POST",
         {
@@ -113,12 +113,12 @@ export class Game {
         },
         "scores"
       ).then((json) => {
-        //clicks it took to win the  game
-        //show win banner
-        //play again yes no
         console.log(json);
+        wonGame = true;
+        this.displayModal(wonGame);
       });
     }
+    return wonGame;
   };
 
   createCard = (element, imageTag) => {
@@ -164,6 +164,20 @@ export class Game {
     return timeSetter;
   };
 
+  movesMessage = () => {
+    document.getElementById("moves").innerHTML = `Moves left ${this.movesLeft}`;
+  };
+
+  displayModal = (state) => {
+    const modal = document.getElementById("modal");
+    const image = state
+      ? this.createImageTag("youwonbannerresized", "png")
+      : this.createImageTag("tryagainresized", "png");
+    const banner = modal.querySelector("#banner");
+    banner.appendChild(image);
+    modal.classList.add("show");
+  };
+
   addListener = (cardButton) => {
     cardButton.addEventListener("click", (event) => {
       const currentClickedCard = event.target;
@@ -178,6 +192,7 @@ export class Game {
         // Second click
         this.moves += 1;
         this.movesLeft -= 1;
+        this.movesMessage();
         this.disableClick();
         const matched = this.matchTracker(
           currentClickedCard.dataset.id,
@@ -197,6 +212,7 @@ export class Game {
 
         console.log("moves", this.moves);
         console.log("matches", this.matchesCounter);
+        console.log();
         // console.log(this.movesLeft);
       }
     });
