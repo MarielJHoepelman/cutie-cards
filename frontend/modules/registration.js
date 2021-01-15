@@ -14,11 +14,6 @@ export class Registration {
       : "You don't have any scores saved.";
   };
 
-  // displayMovesLeft = () => {
-  //   document
-  //     .getElementById("moves")
-  //     .innerHTML(`Moves left ${this.MOVES_LIMIT}`);
-  // };
   addListener = () => {
     this.registrationForm.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -31,7 +26,6 @@ export class Registration {
         const game = new Game();
         this.userNameContainer.setAttribute("data-id", json.id);
         this.registrationForm.classList.add("hidden");
-        // this.displayMovesLeft();
       });
     });
   };
