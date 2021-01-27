@@ -19,7 +19,7 @@
     </header>
 
     <main id="main">
-      <div class="login_wrapper">
+      <div id="login_wrapper" class="login_wrapper">
         <div id="errors"></div>
         <div id="registration">
           <form id="registration-form" class="registration-form">
@@ -27,10 +27,13 @@
             <input type="text" id="user[name]" name="user[name]" />
             <input type="submit" value="Submit" />
           </form>
-          <div id="username" class="username"></div>
-          <div id="score" class="score"></div>
-          <div id="moves" class="moves"></div>
         </div>
+      </div>
+
+      <div class="username_wrapper">
+        <div id="username" class="username"></div>
+        <div id="score" class="score"></div>
+        <div id="moves" class="moves"></div>
       </div>
 
       <div id="game">
@@ -38,7 +41,21 @@
       </div>
 
       <div id="modal" class="modal">
-        <div id="banner" class="banner"></div>
+        <div id="banner" class="banner">
+          <div id="win-image" class="banner-images">
+            <img src="./images/youwonbannerresized.png" />
+          </div>
+          <div id="lose-image" class="banner-images">
+            <img src="./images/tryagainresized.png" />
+          </div>
+        </div>
+        <div id="playAgain" class="playAgain">
+          <div>Play again?</div>
+          <div>
+            <button id="yesBtn" class="yesBtn">YES</button>
+            <button id="noBtn" class="noBtn">NO</button>
+          </div>
+        </div>
       </div>
     </main>
 
