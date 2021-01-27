@@ -5,6 +5,7 @@ export class Registration {
   constructor() {
     this.registrationForm = document.getElementById("registration-form");
     this.userNameContainer = document.getElementById("username");
+    this.hideLoginWrapper = document.getElementById("login_wrapper");
     this.addListener();
   }
 
@@ -20,6 +21,10 @@ export class Registration {
       this.name = event.target.elements["user[name]"].value;
 
       Fetcher.submitData("POST", { name: this.name }, "users").then((json) => {
+        if (json) {
+          this.hideLoginWrapper.classList.add("hide");
+        }
+
         this.userNameContainer.innerHTML = `Hi ${
           json.name
         }! ${this.scoreMessage(json.best_score)}`;
