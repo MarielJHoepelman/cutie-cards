@@ -10,6 +10,10 @@ skip_before_action :verify_authenticity_token
     end
   end
 
+  def index
+    #show best scores
+  end
+
   def score_params
     params.require(:data).permit(:user_id, :score)
   end
