@@ -2,39 +2,42 @@ import { Fetcher } from "./fetcher.js";
 
 export class Game {
   CARDS = [
-    // "strawberry",
-    // "apple",
-    // "cherry",
+    "strawberry",
+    "apple",
+    "cherry",
     "coffee",
-    // "avocado",
-    // "watermelon",
-    // "kiwi",
-    // "applejuice",
-    // "bubbletea",
-    // "donut",
-    // "chocolatemilk",
-    // "matchatea",
-    // "strawberrymilk",
+    "avocado",
+    "watermelon",
+    "kiwi",
+    "applejuice",
+    "bubbletea",
+    "donut",
+    "chocolatemilk",
+    "matchatea",
+    "strawberrymilk",
     "popsie",
   ];
 
   INITIAL_TIMER = 5000;
   FLIP_TIMER = 500;
-  MOVES_LIMIT = 5;
+  MOVES_LIMIT = 6;
   MATCHES_TO_WIN = 2;
 
-  matchesCounter = 0;
-  moves = 0;
-  movesLeft = 0;
-
-  clickedCardMemo = null;
-
   constructor() {
+    this.initGame();
+  }
+
+  initGame = () => {
+    this.matchesCounter = 0;
+    this.moves = 0;
+    this.movesLeft = 0;
+    this.clickedCardMemo = null;
     this.movesLeft = this.MOVES_LIMIT;
+    this.getCardsElement().innerHTML = "";
     this.displayCards();
     this.flipCards(this.INITIAL_TIMER);
     this.movesMessage();
-  }
+  };
 
   duplicateCards = () => {
     const gameCards = [...this.CARDS, ...this.CARDS];
@@ -104,7 +107,6 @@ export class Game {
     if (this.movesLeft === 0) {
       wonGame = false;
       this.displayModal(wonGame);
-      console.log(wonGame);
     } else if (this.matchesCounter === this.MATCHES_TO_WIN && !!userId) {
       Fetcher.submitData(
         "POST",
@@ -113,7 +115,6 @@ export class Game {
         },
         "scores"
       ).then((json) => {
-        console.log(json);
         wonGame = true;
         this.displayModal(wonGame);
       });
@@ -170,12 +171,30 @@ export class Game {
 
   displayModal = (state) => {
     const modal = document.getElementById("modal");
-    const image = state
-      ? this.createImageTag("youwonbannerresized", "png")
-      : this.createImageTag("tryagainresized", "png");
-    const banner = modal.querySelector("#banner");
-    banner.appendChild(image);
+    const playAgain = document.getElementById("playAgain");
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+
     modal.classList.add("show");
+
+    const image = state
+      ? document.getElementById("win-image")
+      : document.getElementById("lose-image");
+
+    // const banner = modal.querySelector("#banner");
+    // banner.appendChild(image);
+    modal.classList.add("show");
+    image.classList.add("show");
+
+    yesBtn.addEventListener("click", () => {
+      modal.classList.remove("show");
+      image.classList.remove("show");
+      this.initGame();
+    });
+
+    noBtn.addEventListener("click", () => {
+      location.reload();
+    });
   };
 
   addListener = (cardButton) => {
@@ -209,11 +228,6 @@ export class Game {
         }
 
         this.winChecker();
-
-        console.log("moves", this.moves);
-        console.log("matches", this.matchesCounter);
-        console.log();
-        // console.log(this.movesLeft);
       }
     });
   };
