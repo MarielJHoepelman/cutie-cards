@@ -117,6 +117,10 @@ button > img {
   text-align: center;
 }
 
+.login_wrapper.hide {
+  display: none;
+}
+
 .modal {
   display: none;
   position: fixed;
@@ -131,14 +135,33 @@ button > img {
 }
 
 .modal.show {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal .banner {
-  position: absolute;
+  position: relative;
   top: 50%;
   transform: translate(0, -50%);
   text-align: center;
   left: 0;
   right: 0;
+}
+
+.modal .banner-images {
+  display: none;
+}
+
+.modal .banner-images.show {
+  display: block;
+}
+
+.playAgain {
+  z-index: 100;
+}
+
+.username_wrapper {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  text-align: left;
 }
