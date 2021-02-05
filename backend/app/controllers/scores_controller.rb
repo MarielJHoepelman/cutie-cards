@@ -11,7 +11,7 @@ skip_before_action :verify_authenticity_token
   end
 
   def index
-    #show best scores
+    render json: Score.best_scores
   end
 
   def score_params
