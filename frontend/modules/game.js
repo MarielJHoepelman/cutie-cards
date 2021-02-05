@@ -23,7 +23,8 @@ export class Game {
   MOVES_LIMIT = 6;
   MATCHES_TO_WIN = 2;
 
-  constructor() {
+  constructor(userId) {
+    this.userId = userId;
     this.initGame();
   }
 

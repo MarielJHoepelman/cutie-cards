@@ -28,8 +28,7 @@ export class Registration {
         this.userNameContainer.innerHTML = `Hi ${
           json.name
         }! ${this.scoreMessage(json.best_score)}`;
-        const game = new Game();
-        this.userNameContainer.setAttribute("data-id", json.id);
+        new Game(json.id);
         this.registrationForm.classList.add("hidden");
       });
     });
