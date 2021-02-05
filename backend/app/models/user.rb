@@ -3,6 +3,7 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   def best_score
-    return self.scores.minimum("score")
+    scores.minimum("score")
   end
+
 end
