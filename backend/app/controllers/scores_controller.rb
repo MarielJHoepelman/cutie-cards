@@ -2,7 +2,7 @@ class ScoresController < ApplicationController
 skip_before_action :verify_authenticity_token
 
   def create
-    data = Score.create(score_params)
+    data = Score.find_or_create_by(score_params)
     if data.valid?
       render json: {user_id: data.user_id, score: data.score}
     else
