@@ -22,6 +22,8 @@ export class Game {
   FLIP_TIMER = 500;
   MOVES_LIMIT = 6;
   MATCHES_TO_WIN = 2;
+  MOVES_LIMIT = this.CARDS.length * 2;
+  MATCHES_TO_WIN = this.CARDS.length;
 
   constructor(userId) {
     this.userId = userId;
