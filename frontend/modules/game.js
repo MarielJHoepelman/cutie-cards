@@ -34,10 +34,12 @@ export class Game {
     this.movesLeft = 0;
     this.clickedCardMemo = null;
     this.movesLeft = this.MOVES_LIMIT;
+    this.scoresButton = document.getElementById("scores_list");
     this.getCardsElement().innerHTML = "";
     this.displayCards();
     this.flipCards(this.INITIAL_TIMER);
     this.movesMessage();
+    this.displayAllScores();
   };
 
   duplicateCards = () => {
@@ -255,5 +257,10 @@ export class Game {
 
       this.getCardsElement().appendChild(flipContainer);
     }
+  };
+  displayAllScores = () => {
+    this.scoresButton.addEventListener("click", (event) => {
+      Fetcher.submitData("GET", null, "scores").then((json) => {});
+    });
   };
 }
