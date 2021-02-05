@@ -6,7 +6,7 @@ export class Fetcher {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify(body),
+      body: body ? JSON.stringify(body) : null,
     };
 
     const displayErrors = (error) => {
