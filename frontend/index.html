@@ -32,15 +32,21 @@
 
       <div class="username_wrapper">
         <div id="username" class="username"></div>
+        <div id="user_best_score" class="user_best_score"></div>
         <div id="score" class="score"></div>
         <div id="moves" class="moves"></div>
         <div id="record_score" class="record_score"></div>
       </div>
 
-      <div id="scores">
+      <div id="scores" class="hidden">
         <button id="scores_list" class="scores_list">
           See all scores here!
         </button>
+      </div>
+
+      <div id="scores-container" class="scores_container modal">
+        <button id="exitBtn" class="exit">Exit</button>
+        <ul class="no-bullets"></ul>
       </div>
 
       <div id="game">
