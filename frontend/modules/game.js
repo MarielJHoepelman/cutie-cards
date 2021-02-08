@@ -263,6 +263,16 @@ export class Game {
   displayAllScores = () => {
     this.scoresButton.addEventListener("click", (event) => {
       Fetcher.submitData("GET", null, "scores").then((json) => {});
+  scoreMessage = (score) => {
+    return score
+      ? `Your best score is ${score}`
+      : "You don't have any scores saved.";
+  };
+
+  refreshUserScore = () => {
+    const userBestScore = document.getElementById("user_best_score");
+    Fetcher.submitData("GET", null, `users/${this.userId}`).then((json) => {
+      userBestScore.innerHTML = this.scoreMessage(json.best_score);
     });
   };
 }
