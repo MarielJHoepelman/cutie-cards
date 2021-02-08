@@ -165,3 +165,21 @@ button > img {
   padding-bottom: 20px;
   text-align: left;
 }
+
+.record {
+  float: left;
+}
+
+.user_best_score {
+  font-family: "Margarine", cursive;
+  font-size: 40px;
+  color: #c66e4e;
+}
+
+.hidden {
+  display: none;
+}
+
+.no-bullets {
+  list-style-type: none;
+}
