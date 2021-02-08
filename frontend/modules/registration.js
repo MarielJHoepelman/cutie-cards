@@ -7,6 +7,7 @@ export class Registration {
     this.userNameContainer = document.getElementById("username");
     this.hideLoginWrapper = document.getElementById("login_wrapper");
     this.recordScore = document.getElementById("record_score");
+    this.userBestScore = document.getElementById("user_best_score");
     this.addListener();
   }
 
@@ -25,9 +26,8 @@ export class Registration {
         if (json) {
           this.hideLoginWrapper.classList.add("hide");
         }
-        this.userNameContainer.innerHTML = `Hi ${
-          json.name
-        }! ${this.scoreMessage(json.best_score)}`;
+        this.userNameContainer.innerHTML = `Hi ${json.name}!`;
+        this.userBestScore.innerHTML = this.scoreMessage(json.best_score);
         this.recordScore.innerHTML = `The highest score of all players is ${json.record}`;
         new Game(json.id);
         this.registrationForm.classList.add("hidden");
