@@ -20,8 +20,6 @@ export class Game {
 
   INITIAL_TIMER = 5000;
   FLIP_TIMER = 500;
-  MOVES_LIMIT = 6;
-  MATCHES_TO_WIN = 2;
   MOVES_LIMIT = this.CARDS.length * 2;
   MATCHES_TO_WIN = this.CARDS.length;
 
@@ -36,12 +34,14 @@ export class Game {
     this.movesLeft = 0;
     this.clickedCardMemo = null;
     this.movesLeft = this.MOVES_LIMIT;
+    document.getElementById("scores").classList.remove("hidden");
     this.scoresButton = document.getElementById("scores_list");
     this.getCardsElement().innerHTML = "";
     this.displayCards();
     this.flipCards(this.INITIAL_TIMER);
     this.movesMessage();
-    this.displayAllScores();
+    this.displayAllScoresButton();
+    this.refreshUserScore();
   };
 
   duplicateCards = () => {
@@ -107,24 +107,24 @@ export class Game {
   };
 
   winChecker = () => {
-    let wonGame;
-    let userId = document.getElementById("username").getAttribute("data-id");
+    let gameState;
+
     if (this.movesLeft === 0) {
-      wonGame = false;
-      this.displayModal(wonGame);
-    } else if (this.matchesCounter === this.MATCHES_TO_WIN && !!userId) {
+      gameState = false;
+      this.displayWinLoseModal(gameState);
+    } else if (this.matchesCounter === this.MATCHES_TO_WIN && !!this.userId) {
       Fetcher.submitData(
         "POST",
         {
-          data: { user_id: userId, score: this.moves.toString() },
+          data: { user_id: this.userId, score: this.moves.toString() },
         },
         "scores"
       ).then((json) => {
-        wonGame = true;
-        this.displayModal(wonGame);
+        gameState = true;
+        this.displayWinLoseModal(gameState);
       });
     }
-    return wonGame;
+    return gameState;
   };
 
   createCard = (element, imageTag) => {
@@ -174,7 +174,7 @@ export class Game {
     document.getElementById("moves").innerHTML = `Moves left ${this.movesLeft}`;
   };
 
-  displayModal = (state) => {
+  displayWinLoseModal = (gameState) => {
     const modal = document.getElementById("modal");
     const playAgain = document.getElementById("playAgain");
     const yesBtn = document.getElementById("yesBtn");
@@ -182,12 +182,10 @@ export class Game {
 
     modal.classList.add("show");
 
-    const image = state
+    const image = gameState
       ? document.getElementById("win-image")
       : document.getElementById("lose-image");
 
-    // const banner = modal.querySelector("#banner");
-    // banner.appendChild(image);
     modal.classList.add("show");
     image.classList.add("show");
 
@@ -260,9 +258,33 @@ export class Game {
       this.getCardsElement().appendChild(flipContainer);
     }
   };
-  displayAllScores = () => {
+
+  scoresModal = () => {};
+
+  addListenerToExitButton = (element) => {
+    const exitButton = document.getElementById("exitBtn");
+    exitButton.addEventListener("click", (event) => {
+      element.classList.remove("show");
+    });
+  };
+
+  displayAllScoresButton = () => {
+    const scoresContainer = document.getElementById("scores-container");
+    this.addListenerToExitButton(scoresContainer);
     this.scoresButton.addEventListener("click", (event) => {
-      Fetcher.submitData("GET", null, "scores").then((json) => {});
+      scoresContainer.classList.add("show");
+      Fetcher.submitData("GET", null, "scores").then((json) => {
+        const ul = scoresContainer.querySelector("ul");
+        ul.innerHTML = "";
+        for (const element of json) {
+          let li = document.createElement("li");
+          li.innerHTML = `${element.name} - ${element.score}`;
+          ul.appendChild(li);
+        }
+      });
+    });
+  };
+
   scoreMessage = (score) => {
     return score
       ? `Your best score is ${score}`
