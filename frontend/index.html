@@ -25,28 +25,31 @@
           <form id="registration-form" class="registration-form">
             <label for="user[name]">Enter Your Name Here</label>
             <input type="text" id="user[name]" name="user[name]" />
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Go" class="button-style" />
           </form>
         </div>
       </div>
 
       <div class="username_wrapper">
-        <div id="username" class="username"></div>
-        <div id="user_best_score" class="user_best_score"></div>
-        <div id="score" class="score"></div>
-        <div id="moves" class="moves"></div>
+        <div id="username-and-score-wrapper" class="username-and-score-wrapper">
+          <div id="username" class="username"></div>
+          <div id="user_best_score" class="user_best_score"></div>
+        </div>
         <div id="record_score" class="record_score"></div>
+        <div id="moves" class="moves"></div>
       </div>
 
       <div id="scores" class="hidden">
-        <button id="scores_list" class="scores_list">
+        <button id="scores_list" class="scores_list button-style">
           See all scores here!
         </button>
       </div>
 
       <div id="scores-container" class="scores_container modal">
-        <button id="exitBtn" class="exit">Exit</button>
-        <ul class="no-bullets"></ul>
+        <div class="exit-button-and-scores-list-wrapper">
+          <ul class="no-bullets"></ul>
+          <button id="exitBtn" class="exit button-style">Exit</button>
+        </div>
       </div>
 
       <div id="game">
@@ -65,8 +68,8 @@
         <div id="playAgain" class="playAgain">
           <div>Play again?</div>
           <div>
-            <button id="yesBtn" class="yesBtn">YES</button>
-            <button id="noBtn" class="noBtn">NO</button>
+            <button id="yesBtn" class="yesBtn button-style">YES</button>
+            <button id="noBtn" class="noBtn button-style">NO</button>
           </div>
         </div>
       </div>
@@ -76,7 +79,7 @@
 
     <div class="footer-copyright">
       © 2020 Copyright: created by Mariel Hoepelman
-      <a href="https://marielhoepelman.com"> www.marielhoepelman.com</a>
+      <!-- <a href="https://marielhoepelman.com"> www.marielhoepelman.com</a> -->
     </div>
   </body>
 </html>
