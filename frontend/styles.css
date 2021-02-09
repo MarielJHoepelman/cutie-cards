@@ -22,8 +22,15 @@ body {
 .registration-form {
   font-size: 50px;
   padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.registration-form label {
+  padding-right: 10px;
+  padding-left: 10px;
+}
 .registration-form.hidden {
   display: none;
 }
@@ -49,6 +56,9 @@ button > img {
 .card-button {
   max-width: 210px;
   max-height: 210px;
+  border-color: #f65a67;
+  border-style: solid;
+  opacity: 20%;
 }
 
 .card-button img {
@@ -233,4 +243,14 @@ button > img {
   font-family: "Margarine", cursive;
   cursor: pointer;
   height: 35px;
+}
+
+input[type="text"] {
+  opacity: 50%;
+  border: none;
+  border-bottom: 1px solid #f65a67;
+  height: 50px;
+  background-color: #f5f5f5;
+  font-family: "Margarine", cursive;
+  font-size: 20px;
 }
