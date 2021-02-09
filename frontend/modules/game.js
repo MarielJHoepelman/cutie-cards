@@ -171,7 +171,9 @@ export class Game {
   };
 
   movesMessage = () => {
-    document.getElementById("moves").innerHTML = `Moves left ${this.movesLeft}`;
+    document.getElementById(
+      "moves"
+    ).innerHTML = `You have ${this.movesLeft} moves left to complete this round`;
   };
 
   displayWinLoseModal = (gameState) => {
