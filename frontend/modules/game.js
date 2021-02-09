@@ -111,11 +111,8 @@ export class Game {
 
   winChecker = () => {
     let gameState;
-
-    if (this.movesLeft === 0) {
-      gameState = false;
-      this.displayWinLoseModal(gameState);
-    } else if (this.matchesCounter === this.MATCHES_TO_WIN && !!this.userId) {
+    const gameIsWon = this.matchesCounter === this.MATCHES_TO_WIN;
+    if (gameIsWon) {
       Fetcher.submitData(
         "POST",
         {
@@ -126,6 +123,9 @@ export class Game {
         gameState = true;
         this.displayWinLoseModal(gameState);
       });
+    } else if (!gameIsWon && this.movesLeft === 0) {
+      gameState = false;
+      this.displayWinLoseModal(gameState);
     }
     return gameState;
   };
