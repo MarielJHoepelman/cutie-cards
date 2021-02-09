@@ -36,12 +36,15 @@ export class Game {
     this.movesLeft = this.MOVES_LIMIT;
     document.getElementById("scores").classList.remove("hidden");
     this.scoresButton = document.getElementById("scores_list");
+    this.logoutButton = document.getElementById("logout-button");
+    this.logoutButton.classList.remove("hidden");
     this.getCardsElement().innerHTML = "";
     this.displayCards();
     this.flipCards(this.INITIAL_TIMER);
     this.movesMessage();
     this.displayAllScoresButton();
     this.refreshUserScore();
+    this.logout();
   };
 
   duplicateCards = () => {
@@ -265,7 +268,7 @@ export class Game {
 
   addListenerToExitButton = (element) => {
     const exitButton = document.getElementById("exitBtn");
-    exitButton.addEventListener("click", (event) => {
+    exitButton.addEventListener("click", () => {
       element.classList.remove("show");
     });
   };
@@ -297,6 +300,12 @@ export class Game {
     const userBestScore = document.getElementById("user_best_score");
     Fetcher.submitData("GET", null, `users/${this.userId}`).then((json) => {
       userBestScore.innerHTML = this.scoreMessage(json.best_score);
+    });
+  };
+
+  logout = () => {
+    this.logoutButton.addEventListener("click", () => {
+      location.reload();
     });
   };
 }

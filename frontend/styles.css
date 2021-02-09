@@ -4,6 +4,10 @@ header .container img {
   margin-right: auto;
 }
 
+.container {
+  display: flex;
+}
+
 body {
   background-color: #f5f5f5;
   color: #f65a67;
@@ -219,4 +223,14 @@ button > img {
 .button-style:hover {
   background-color: #f5f5f5;
   color: #f65a67;
+}
+
+.logout-button {
+  border: none;
+  background-color: #f5f5f5;
+  font-size: 30px;
+  color: #f65a67;
+  font-family: "Margarine", cursive;
+  cursor: pointer;
+  height: 35px;
 }
