@@ -39,3 +39,6 @@ backend/node_modules
 backend/yarn-error.log
 backend/yarn-debug.log*
 backend/.yarn-integrity
+
+#Ignore mac files
+.DS_Store
