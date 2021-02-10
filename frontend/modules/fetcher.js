@@ -1,6 +1,6 @@
 export class Fetcher {
   static submitData(method, body, endPoint) {
-    let payload = {
+    const payload = {
       method: method,
       headers: {
         "Content-Type": "application/json",
