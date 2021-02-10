@@ -1,6 +1,4 @@
-class ApplicationController < ActionController::Base
-
-  helper_method :record_score
+class ApplicationController < ActionController::Base          
 
   def record_score
     Score.all.minimum(:score)
