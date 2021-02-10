@@ -279,9 +279,10 @@ export class Game {
     this.scoresButton.addEventListener("click", () => {
       scoresContainer.classList.add("show");
       Fetcher.submitData("GET", null, "scores").then((json) => {
+        const sortedJson = json.sort((a, b) => (a.name < b.name ? -1 : 1));
         const ul = scoresContainer.querySelector("ul");
         ul.innerHTML = "";
-        for (const element of json) {
+        for (const element of sortedJson) {
           const li = document.createElement("li");
           li.innerHTML = `${element.name} - ${element.score}`;
           ul.appendChild(li);
