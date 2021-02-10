@@ -2,7 +2,7 @@
 
 ## Description
 
-[Cutie Cards](https://github.com/MarielJHoepelman/cutie-cards) is a memory card game for children.  
+[Cutie Cards](https://github.com/MarielJHoepelman/cutie-cards) is a memory card game for children. A memory game is a card game in which all of the cards are face down and two cards are flipped face up over each turn until all cards are matched.
 [Cutie Cards](https://github.com/MarielJHoepelman/cutie-cards) is a minimum viable product application developed to fulfill the Javascript project requirement for the [Flatiron School](https://flatironschool.com/) Full Stack Web Development V8 curriculum.
 
 ## Usage
@@ -10,37 +10,63 @@
 1. Clone this repository to create a local copy in your computer.
 
 ```
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+git@github.com:MarielJHoepelman/cutie-cards.git
 ```
 
 2.  Change directory to the project folder.
 
 ```
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+cd cutie-cards
 ```
 
 3. Run bundle install to install all dependencies.
 
 ```
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+ bundle install
 ```
 
 4. Run the database migrations.
 
 ```
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+bundle exec rails db:migrate
 ```
 
 5. Run the seeds file.
 
 ```
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+bundle exec rails db:seed
 ```
 
-6. Start the local server and go to https address (e.g http://localhost:3000/)
+6. In the cutie-cards directory, change directory to the backend (yourterminal/cutie-cards/backend (master)).
 
 ```
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+cd backend
+
+```
+
+7. In the backend directory, run the Rails server.
+
+```
+
+rails s
+
+```
+
+8. In a separate tab on your terminal, change directory to frontend. Start the local server and go to https address (yourterminal/cutie-cards/frontend (master))
+
+```
+
+cd frontend
+
+```
+
+9. Start the local server and go to https address (e.g http://localhost:3000/). Both servers (Rails and Local) must be running at the same time for the application to work.
+
+```
+
+httpserver
+
 ```
 
 ## Contributing
@@ -58,3 +84,9 @@ Everyone interacting in the [Cutie Cards](https://github.com/MarielJHoepelman/cu
 ## Credits
 
 The graphics for this project were created by [Mariangel Fermin](https://www.instagram.com/noiir_rrr/).
+The fonts used is [Margerine](https://fonts.google.com/specimen/Margarine?preview.text_type=custom)
+[Concentration](<https://en.wikipedia.org/wiki/Concentration_(card_game)>) game at [Wikipedia](https://en.wikipedia.org/wiki/Main_Page).
+
+```
+
+```
