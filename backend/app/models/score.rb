@@ -9,6 +9,6 @@ class Score < ApplicationRecord
       }
     end
 
-    scores.sort_by { |element| element[:score] }
+    scores.sort_by { |element| element[:score] }.uniq
   end
 end
