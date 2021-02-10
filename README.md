@@ -37,7 +37,7 @@ bundle exec rails db:migrate
 bundle exec rails db:seed
 ```
 
-6. In the cutie-cards directory, change directory to the backend (yourterminal/cutie-cards/backend (master)).
+6. In the cutie-cards directory, change directory to the backend (~/cutie-cards/backend).
 
 ```
 
@@ -53,7 +53,7 @@ rails s
 
 ```
 
-8. In a separate tab on your terminal, change directory to frontend. Start the local server and go to https address (yourterminal/cutie-cards/frontend (master))
+8. In a separate tab on your terminal, change directory to frontend. Start the local server and go to https address (~/cutie-cards/frontend)
 
 ```
 
@@ -61,13 +61,15 @@ cd frontend
 
 ```
 
-9. Start the local server and go to https address (e.g http://localhost:3000/). Both servers (Rails and Local) must be running at the same time for the application to work.
+9. Start the local server.
 
 ```
 
 httpserver
 
 ```
+
+10. In your browser, go to https address (e.g http://localhost:3000/). Both servers (Rails and Local) must be running at the same time for the application to work.
 
 ## Contributing
 
@@ -84,9 +86,7 @@ Everyone interacting in the [Cutie Cards](https://github.com/MarielJHoepelman/cu
 ## Credits
 
 The graphics for this project were created by [Mariangel Fermin](https://www.instagram.com/noiir_rrr/).
+
 The fonts used is [Margerine](https://fonts.google.com/specimen/Margarine?preview.text_type=custom)
+
 [Concentration](<https://en.wikipedia.org/wiki/Concentration_(card_game)>) game at [Wikipedia](https://en.wikipedia.org/wiki/Main_Page).
-
-```
-
-```
