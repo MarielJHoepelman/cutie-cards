@@ -30,8 +30,7 @@ export class Game {
 
   initGame = () => {
     this.matchesCounter = 0;
-    this.moves = 0;
-    this.movesLeft = 0;
+    this.currentScore = 0;
     this.clickedCardMemo = null;
     this.movesLeft = this.MOVES_LIMIT;
     document.getElementById("scores").classList.remove("hidden");
@@ -53,20 +52,23 @@ export class Game {
   };
 
   shuffleCards = (cards) => {
-    let ctr = cards.length,
+    let counter = cards.length,
       temp,
-      index;
+      randomIndex;
 
     // While there are elements in the array
-    while (ctr > 0) {
-      // Pick a random index
-      index = Math.floor(Math.random() * ctr);
-      // Decrease ctr by 1
-      ctr--;
+    while (counter > 0) {
+      // Picks a random index
+      randomIndex = Math.floor(Math.random() * counter);
+      // Decrease counter by 1
+      counter--;
       // And swap the last element with it
-      temp = cards[ctr];
-      cards[ctr] = cards[index];
-      cards[index] = temp;
+      // temp is now last element.
+      temp = cards[counter];
+      //cards counter is now random index
+      cards[counter] = cards[randomIndex];
+      //randomIndex is now temp
+      cards[randomIndex] = temp;
     }
     return cards;
   };
@@ -75,7 +77,7 @@ export class Game {
     setTimeout((timer) => {
       Object.values(
         this.getCardsElement().getElementsByClassName("card")
-      ).forEach((item, i) => {
+      ).forEach((item) => {
         item.classList.add("flipped");
       });
     }, timer);
@@ -94,7 +96,7 @@ export class Game {
   };
 
   disableClick = () => {
-    this.getCardsButtons().forEach((item, i) => {
+    this.getCardsButtons().forEach((item) => {
       item.setAttribute("disabled", true);
     });
   };
@@ -116,7 +118,7 @@ export class Game {
       Fetcher.submitData(
         "POST",
         {
-          data: { user_id: this.userId, score: this.moves.toString() },
+          data: { user_id: this.userId, score: this.currentScore.toString() },
         },
         "scores"
       ).then((json) => {
@@ -130,40 +132,40 @@ export class Game {
     return gameState;
   };
 
-  createCard = (element, imageTag) => {
-    let card = document.createElement("button");
+  createCard = (cardName, imageTag) => {
+    const card = document.createElement("button");
     card.classList.add("card-button");
-    card.setAttribute("data-id", element);
+    card.setAttribute("data-id", cardName); //name of attr, value of attr
     card.appendChild(imageTag);
     return card;
   };
 
   createImageTag = (source, format) => {
-    let imageTag = document.createElement("img");
+    const imageTag = document.createElement("img");
     imageTag.src = `./images/${source}.${format}`;
     return imageTag;
   };
 
   createflipContainer = () => {
-    let cardContainer = document.createElement("div");
+    const cardContainer = document.createElement("div");
     cardContainer.classList.add("flip-container", "card");
     return cardContainer;
   };
 
   createFlipperElement = () => {
-    let flipper = document.createElement("div");
+    const flipper = document.createElement("div");
     flipper.classList.add("flipper");
     return flipper;
   };
 
   createCardAngleElement = (angle) => {
-    let side = document.createElement("div");
+    const side = document.createElement("div");
     side.classList.add(angle);
     return side;
   };
 
   timeSetter = (parentElement) => {
-    let timeSetter = setTimeout((timer) => {
+    const timeSetter = setTimeout((timer) => {
       this.clickedCardMemo.closest(".flip-container").classList.add("flipped"); // fliped the first card
       parentElement.classList.add("flipped"); // flip the second card
       this.clickedCardMemo = null; // reset the memo card
@@ -181,9 +183,9 @@ export class Game {
 
   displayWinLoseModal = (gameState) => {
     const modal = document.getElementById("modal");
-    const playAgain = document.getElementById("playAgain");
-    const yesBtn = document.getElementById("yesBtn");
-    const noBtn = document.getElementById("noBtn");
+    const playAgain = document.getElementById("play-again");
+    const yesButton = document.getElementById("yes-button");
+    const noButton = document.getElementById("no-button");
 
     modal.classList.add("show");
 
@@ -194,13 +196,13 @@ export class Game {
     modal.classList.add("show");
     image.classList.add("show");
 
-    yesBtn.addEventListener("click", () => {
+    yesButton.addEventListener("click", () => {
       modal.classList.remove("show");
       image.classList.remove("show");
       this.initGame();
     });
 
-    noBtn.addEventListener("click", () => {
+    noButton.addEventListener("click", () => {
       location.reload();
     });
   };
@@ -217,7 +219,7 @@ export class Game {
         this.clickedCardMemo = currentClickedCard; // this is the first card clicked, save it
       } else {
         // Second click
-        this.moves += 1;
+        this.currentScore += 1;
         this.movesLeft -= 1;
         this.movesMessage();
         this.disableClick();
@@ -241,14 +243,14 @@ export class Game {
   };
 
   displayCards = () => {
-    for (const element of this.shuffleCards(this.duplicateCards())) {
-      let flipContainer = this.createflipContainer();
-      let flipper = this.createFlipperElement();
-      let front = this.createCardAngleElement("front");
-      let back = this.createCardAngleElement("back");
-      let frontCardImageTag = this.createImageTag(element, "jpg");
-      let reverseCardImageTag = this.createImageTag("reverse", "png");
-      let cardButton = this.createCard(element, reverseCardImageTag);
+    for (const cardName of this.shuffleCards(this.duplicateCards())) {
+      const flipContainer = this.createflipContainer();
+      const flipper = this.createFlipperElement();
+      const front = this.createCardAngleElement("front");
+      const back = this.createCardAngleElement("back");
+      const frontCardImageTag = this.createImageTag(cardName, "jpg");
+      const reverseCardImageTag = this.createImageTag("reverse", "png");
+      const cardButton = this.createCard(cardName, reverseCardImageTag);
 
       this.addListener(cardButton);
 
@@ -264,25 +266,23 @@ export class Game {
     }
   };
 
-  scoresModal = () => {};
-
-  addListenerToExitButton = (element) => {
+  addListenerToExitButton = (scoresContainerModal) => {
     const exitButton = document.getElementById("exitBtn");
     exitButton.addEventListener("click", () => {
-      element.classList.remove("show");
+      scoresContainerModal.classList.remove("show");
     });
   };
 
   displayAllScoresButton = () => {
     const scoresContainer = document.getElementById("scores-container");
     this.addListenerToExitButton(scoresContainer);
-    this.scoresButton.addEventListener("click", (event) => {
+    this.scoresButton.addEventListener("click", () => {
       scoresContainer.classList.add("show");
       Fetcher.submitData("GET", null, "scores").then((json) => {
         const ul = scoresContainer.querySelector("ul");
         ul.innerHTML = "";
         for (const element of json) {
-          let li = document.createElement("li");
+          const li = document.createElement("li");
           li.innerHTML = `${element.name} - ${element.score}`;
           ul.appendChild(li);
         }
