@@ -1,0 +1,24 @@
+{
+  "name": "cutie-cards",
+  "version": "1.0.0",
+  "description": "## Description",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "httpserver"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarielJHoepelman/cutie-cards.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarielJHoepelman/cutie-cards/issues"
+  },
+  "homepage": "https://github.com/MarielJHoepelman/cutie-cards#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "httpserver": "^0.3.0"
+  }
+}
