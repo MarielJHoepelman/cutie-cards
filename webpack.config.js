@@ -9,11 +9,6 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
   },
-  devServer: {
-    port: process.env.PORT || 8080,
-    compress: true,
-    public: "cutie-cards.herokuapp.com/",
-  },
   plugins: [
     new HtmlWebpackPlugin({ template: "./src/index.html" }),
     new MiniCssExtractPlugin(),
