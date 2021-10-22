@@ -12,7 +12,7 @@ module.exports = {
   devServer: {
     port: process.env.PORT || 8080,
     compress: true,
-    disableHostCheck: true,
+    public: "cutie-cards.herokuapp.com/",
   },
   plugins: [
     new HtmlWebpackPlugin({ template: "./src/index.html" }),
