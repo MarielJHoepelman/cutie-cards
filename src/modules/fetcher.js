@@ -9,6 +9,13 @@ export class Fetcher {
       body: body ? JSON.stringify(body) : null,
     };
 
+    const getBackendUrl = () => {
+      console.log("fetcher", process.env.NODE_ENV);
+      return process.env.NODE_ENV === "production"
+        ? "https://cutie-cards-backend.herokuapp.com/"
+        : "http://localhost:3000/";
+    };
+
     const displayErrors = (error) => {
       const errorDiv = document.getElementById("errors");
       errorDiv.innerHTML = error;
@@ -17,7 +24,7 @@ export class Fetcher {
       }, 2000);
     };
 
-    return fetch(`http://localhost:3000/${endPoint}`, payload)
+    return fetch(`${getBackendUrl()}${endPoint}`, payload)
       .then((response) => {
         if (!response.ok) {
           return response.json().then((json) => {
