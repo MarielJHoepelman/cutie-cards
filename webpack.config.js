@@ -10,7 +10,8 @@ module.exports = {
     filename: "bundle.js",
   },
   devServer: {
-    port: process.env.PORT || 8080,
+    compress: true,
+    disableHostCheck: true,
   },
   plugins: [
     new HtmlWebpackPlugin({ template: "./src/index.html" }),
