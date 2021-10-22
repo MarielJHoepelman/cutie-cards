@@ -10,7 +10,6 @@ module.exports = {
     filename: "bundle.js",
   },
   devServer: {
-    inline: true,
     port: process.env.PORT || 8080,
   },
   plugins: [
