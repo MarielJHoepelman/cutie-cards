@@ -1,0 +1,257 @@
+header .container img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container {
+  display: flex;
+}
+
+body {
+  background-color: #f5f5f5;
+  color: #f65a67;
+  font-family: "Margarine", cursive;
+}
+
+.username {
+  font-size: 40px;
+  padding-right: 10px;
+}
+
+.registration-form {
+  font-size: 50px;
+  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.registration-form label {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.registration-form.hidden {
+  display: none;
+}
+
+.footer-copyright {
+  position: fixed;
+  text-align: center;
+}
+
+button > img {
+  pointer-events: none;
+}
+
+.card {
+  text-align: center;
+  border: none;
+  display: inline-grid;
+  margin: 0.5rem;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.card-button {
+  max-width: 210px;
+  max-height: 210px;
+  border-color: #f65a67;
+  border-style: solid;
+  opacity: 20%;
+}
+
+.card-button img {
+  width: 100%;
+  height: 100%;
+}
+/* entire container, keeps perspective */
+.flip-container {
+  perspective: 1000px;
+}
+/* flip the pane when flipped */
+.flip-container.flipped .flipper {
+  transform: rotateY(180deg);
+}
+
+.flip-container,
+.front,
+.back {
+  width: 210px;
+  height: 210px;
+}
+
+/* flip speed goes here */
+.flipper {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+/* hide back of pane during swap */
+.front,
+.back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+  z-index: 2;
+  /* for firefox 31 */
+  transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+  transform: rotateY(180deg);
+}
+
+.footer-copyright {
+  bottom: 0px;
+  width: 100%;
+  background: #ffffff;
+  flex-shrink: 0;
+}
+
+.popUpBanner {
+}
+
+.moves {
+  font-size: 25px;
+}
+
+.login_wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 200px;
+  text-align: center;
+}
+
+.login_wrapper.hide {
+  display: none;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.5);
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.modal.show {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal .banner {
+  position: relative;
+  top: 50%;
+  transform: translate(0, -50%);
+  text-align: center;
+  left: 0;
+  right: 0;
+}
+
+.modal .banner-images {
+  display: none;
+}
+
+.modal .banner-images.show {
+  display: block;
+}
+
+.play-again {
+  z-index: 100;
+}
+
+.username_wrapper {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  text-align: left;
+}
+
+.record {
+  float: left;
+}
+
+.user_best_score {
+  font-family: "Margarine", cursive;
+  font-size: 40px;
+  color: ##f65a67;
+}
+
+.hidden {
+  display: none;
+}
+
+.no-bullets {
+  list-style-type: none;
+}
+
+.record_score {
+  font-size: 25px;
+  /* color: #c66e4e; */
+}
+
+.username-and-score-wrapper {
+  display: flex;
+}
+
+.exit-button-and-scores-list-wrapper {
+  background-color: white;
+  position: relative;
+  top: 50%;
+  transform: translate(0, -50%);
+  text-align: center;
+  left: 0;
+  right: 0;
+  width: 50%;
+  margin: 0 auto;
+  border: 2px solid;
+}
+
+.button-style {
+  border-radius: 50px;
+  border: 3px solid #f65a67;
+  background-color: #f65a67;
+  font-size: 30px;
+  color: #f5f5f5;
+  font-family: "Margarine", cursive;
+  cursor: pointer;
+}
+
+.button-style:hover {
+  background-color: #f5f5f5;
+  color: #f65a67;
+}
+
+.logout-button {
+  border: none;
+  background-color: #f5f5f5;
+  font-size: 30px;
+  color: #f65a67;
+  font-family: "Margarine", cursive;
+  cursor: pointer;
+  height: 35px;
+}
+
+input[type="text"] {
+  opacity: 50%;
+  border: none;
+  border-bottom: 1px solid #f65a67;
+  height: 50px;
+  background-color: #f5f5f5;
+  font-family: "Margarine", cursive;
+  font-size: 20px;
+}
+

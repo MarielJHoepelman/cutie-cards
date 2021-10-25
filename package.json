@@ -7,8 +7,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --open --mode development",
-    "prod": "NODE_ENV=production webpack"
+    "dev": "webpack serve --mode development",
+    "start": "node server.js",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -22,12 +23,19 @@
   "homepage": "https://github.com/MarielJHoepelman/cutie-cards#readme",
   "dependencies": {
     "css-loader": "^6.4.0",
+    "dotenv-webpack": "^7.0.3",
+    "express": "^4.17.1",
     "html-webpack-plugin": "^5.4.0",
+    "mini-css-extract-plugin": "^2.4.3",
     "path": "^0.12.7",
     "webpack": "^5.59.1",
-    "webpack-dev-server": "^4.3.1",
-    "dotenv-webpack": "^7.0.3",
-    "mini-css-extract-plugin": "^2.4.3",
-    "webpack-cli": "^4.9.1"
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.3.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "babel-loader": "^8.2.3",
+    "html-loader": "^3.0.0"
   }
 }
